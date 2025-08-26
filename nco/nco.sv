@@ -27,7 +27,7 @@ module nco #(
     logic [NcoWidth-1:0] nco_cnt = 2 ** (NcoWidth - 1) + NcoStepInit / 2;
 
     always_ff @(posedge clk) begin
-        if (saxis_nco_tvalid) nco_step <= saxis_nco_tdata;
+        if (saxis_nco_tvalid == 1'b1) nco_step <= saxis_nco_tdata;
     end
 
     logic [NcoWidth-1:0] nco_cnt_rst_val = 2 ** (NcoWidth - 1) + NcoStepInit / 2;
@@ -37,13 +37,13 @@ module nco #(
     end
 
     always @(posedge clk)
-        if (rst) nco_cnt <= nco_cnt_rst_val;
+        if (rst == 1'b1) nco_cnt <= nco_cnt_rst_val;
         else nco_cnt <= nco_cnt + nco_step;
 
     logic nco_str_ff = 0;
 
     always @(posedge clk) begin
-        if (rst) nco_str_ff <= '0;
+        if (rst == 1'b1) nco_str_ff <= '0;
         else nco_str_ff <= nco_cnt[$left(nco_cnt)];
     end
 
