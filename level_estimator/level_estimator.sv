@@ -44,8 +44,8 @@ module level_estimator #(
     ) nco_axis_inst (
         .rst            (rst),
         .clk            (clk),
-        .saxis_nco_tdata(nco_tdata),
-        .saxis_tvalid   (nco_tvalid),
+        .saxis_nco_tdata(saxis_nco_tdata),
+        .saxis_tvalid   (saxis_nco_tvalid),
         .strobe_out     (strobe_out)
     );
 
