@@ -81,7 +81,7 @@ module AGC_matlab #(
     wire [LeDataWidth-1:0] le_tdata;
     wire                   le_tvalid;
 
-    level_estimate #(
+    level_estimator #(
         .UseRam     (LeMaUseRam),
         .DataWidth  (LeDataWidth),
         .DataDepth  (LeMaDepth),
