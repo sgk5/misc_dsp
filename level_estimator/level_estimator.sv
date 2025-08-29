@@ -87,9 +87,9 @@ module level_estimator #(
     wire [AbsDataWidth-1 : 0] q_ma_tdata;
 
     mov_avg #(
-        .UseRam    (UseRam),
-        .data_width(AbsDataWidth),
-        .DataDepth (DataDepth)
+        .UseRam   (UseRam),
+        .DataWidth(AbsDataWidth),
+        .DataDepth(DataDepth)
     ) Mov_Av_I (
         .rst               (rst),
         .clk               (clk),
@@ -102,9 +102,9 @@ module level_estimator #(
     );
 
     mov_avg #(
-        .UseRam    (UseRam),
-        .data_width(AbsDataWidth),
-        .DataDepth (DataDepth)
+        .UseRam   (UseRam),
+        .DataWidth(AbsDataWidth),
+        .DataDepth(DataDepth)
     ) Mov_Av_Q (
         .rst               (rst),
         .clk               (clk),
