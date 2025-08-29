@@ -1,10 +1,12 @@
 //! @title Moving average module
 //! The moving average module utilizes the ternary addition feature of Xilinx FPGAs.
 //! The internal shift register can be implemented using either BRAM or LUT.
+//! Sythesis (UseRam = 1) for 16 16-bit elements uses 37 CLB LUTs and 37 CLB registers
+//! Use BRAM when extremely large data depth is needed
 
 module mov_avg #(
     //! 0 - use shift registers, 1 - use ram
-    parameter bit          UseRam    = 0,
+    parameter bit          UseRam    = 1'b0,
     //! Data width
     parameter int unsigned DataWidth = 16,
     //! Buffer depth, number of points over which averaging occurs
@@ -74,6 +76,7 @@ module mov_avg #(
 
         end : gen_RAM
 
+        // these branch uses LUT SR in Xilins FPGA
         else begin : gen_reg
 
             always_comb in_buf = saxis_in_d_tdata;
