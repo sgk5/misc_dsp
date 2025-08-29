@@ -140,7 +140,7 @@ module AGC_matlab #(
     logic signed [LnOutWidth-1:0] diff_ref_ln = '0;
 
     assign diff_ref_ln_temp = ref_reg - log_out;
-    assign diff_ref_ln_msb  = diff_ref_ln_msb[LnOutWidth-:2];
+    assign diff_ref_ln_msb  = diff_ref_ln_temp[LnOutWidth-:2];
 
     always_ff @(posedge clk) begin
         case (diff_ref_ln_msb)
@@ -198,11 +198,11 @@ module AGC_matlab #(
         end
 
     exponenta_tabular #(
-        .ExpPwrWidth(ExpPwrWidth),
-        .ExpOutWidth(ExpOutWidth),
-        .ExpPwrFract(ExpPwrFract),
-        .ExpOutFract(ExpOutFract),
-        .ExpClipLvl (ExpClipLvl)
+        .ExpPwrWidth (ExpPwrWidth),
+        .ExpOutWidth (ExpOutWidth),
+        .ExpPwrFract (ExpPwrFract),
+        .ExpOutFract (ExpOutFract),
+        .ExpClipLevel(ExpClipLvl)
     ) Exp_inst (
         .sys_clk  (sys_clk),
         .exp_power(e_pwr),
