@@ -81,20 +81,20 @@ module level_estimator #(
     logic val_sh = '0;
     always_ff @(posedge clk) val_sh <= saxis_in_d_tvalid && strobe_out;
 
-    wire                      i_ma_tvalid;
-    wire                      q_ma_tvalid;
-    wire [AbsDataWidth-1 : 0] i_ma_tdata;
-    wire [AbsDataWidth-1 : 0] q_ma_tdata;
+    wire                        i_ma_tvalid;
+    wire                        q_ma_tvalid;
+    wire [DataWidth / 2 -1 : 0] i_ma_tdata;
+    wire [DataWidth / 2 -1 : 0] q_ma_tdata;
 
     mov_avg #(
         .UseRam   (UseRam),
-        .DataWidth(AbsDataWidth),
+        .DataWidth(DataWidth / 2),
         .DataDepth(DataDepth)
     ) Mov_Av_I (
         .rst               (rst),
         .clk               (clk),
         //input axis data stream
-        .saxis_in_d_tdata  (i_buf[14:0]),
+        .saxis_in_d_tdata  ({1'b0,i_buf}),
         .saxis_in_d_tvalid (val_sh),
         //output data stream
         .maxis_out_d_tdata (i_ma_tdata),
@@ -103,13 +103,13 @@ module level_estimator #(
 
     mov_avg #(
         .UseRam   (UseRam),
-        .DataWidth(AbsDataWidth),
+        .DataWidth(DataWidth / 2),
         .DataDepth(DataDepth)
     ) Mov_Av_Q (
         .rst               (rst),
         .clk               (clk),
         //input axis data stream
-        .saxis_in_d_tdata  (q_buf[14:0]),
+        .saxis_in_d_tdata  ({1'b0,q_buf}),
         .saxis_in_d_tvalid (val_sh),
         //output data stream
         .maxis_out_d_tdata (q_ma_tdata),
