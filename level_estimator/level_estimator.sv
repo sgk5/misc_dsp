@@ -42,11 +42,11 @@ module level_estimator #(
         .NcoWidth   (NcoWidth),
         .NcoStepInit(NcoStepInit)
     ) nco_axis_inst (
-        .rst            (rst),
-        .clk            (clk),
-        .saxis_nco_tdata(saxis_nco_tdata),
-        .saxis_tvalid   (saxis_nco_tvalid),
-        .strobe_out     (strobe_out)
+        .rst             (rst),
+        .clk             (clk),
+        .saxis_nco_tdata (saxis_nco_tdata),
+        .saxis_nco_tvalid(saxis_nco_tvalid),
+        .strobe_out      (strobe_out)
     );
 
     localparam int unsigned AbsDataWidth = DataWidth / 2 - 1;
