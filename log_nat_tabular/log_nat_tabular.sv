@@ -6,7 +6,7 @@
 //! The output is signed: <br>
 //! 1 bit for the sign, *(OutWidth-OutFract-1)* bits for the integer part, and *(OutFract)* bits for the fractional part.
 
-module log_nat #(
+module log_nat_tabular #(
     //! Module input width
     parameter int unsigned InWidth  = 16,
     //! ln input argument integer part step, a power of two,
